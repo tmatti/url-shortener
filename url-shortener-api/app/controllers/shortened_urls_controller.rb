@@ -1,6 +1,10 @@
 class ShortenedUrlsController < ApplicationController
+  def index
+    @urls = ShortenedUrl.all
+    render json: @urls
+  end
   def create
-    @shortened_url = ShortenedUrl.create(shortened_url_params)
+    @shortened_url = ShortenedUrl.create!(shortened_url_params)
     render json: @shortened_url
   end
 
