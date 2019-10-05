@@ -1,3 +1,4 @@
+require 'faker'
 require 'slug_generator'
 
 FactoryBot.define do
