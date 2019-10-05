@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::API
   rescue_from StandardError::StandardError, with: :unknown_failure
   rescue_from ActionController::ParameterMissing, with: :validation_failure
@@ -5,15 +7,15 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :validation_failure
 
   def unknown_failure(err)
-    error_response( 500,:internal_server_error, err.message)
+    error_response(500, :internal_server_error, err.message)
   end
 
   def not_found_error
-    error_response( 404,:not_found, 'Not found')
+    error_response(404, :not_found, 'Not found')
   end
 
   def validation_failure(err)
-    error_response( 400,:bad_request, err.message)
+    error_response(400, :bad_request, err.message)
   end
 
   def route_not_found
@@ -29,6 +31,6 @@ class ApplicationController < ActionController::API
   end
 
   def error_response_body(code, message)
-    {status: code, message: message}
+    { status: code, message: message }
   end
 end

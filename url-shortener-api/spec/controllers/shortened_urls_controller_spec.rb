@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ShortenedUrlsController, type: :controller do
@@ -8,7 +10,7 @@ RSpec.describe ShortenedUrlsController, type: :controller do
   describe 'POST #create' do
     context 'with correct params' do
       before do
-        post :create, params: {shortened_url: {redirect_url: 'http://stord.com'}}
+        post :create, params: { shortened_url: { redirect_url: 'http://stord.com' } }
       end
 
       it 'returns a 201' do
@@ -25,7 +27,7 @@ RSpec.describe ShortenedUrlsController, type: :controller do
     end
     context 'with invalid redirect_url' do
       before do
-        post :create, params: {shortened_url: {redirect_url: '#$^@#%$%%^$%@'}}
+        post :create, params: { shortened_url: { redirect_url: '#$^@#%$%%^$%@' } }
       end
 
       it 'returns a 400' do
@@ -38,7 +40,7 @@ RSpec.describe ShortenedUrlsController, type: :controller do
     end
     context 'with no redirect_url' do
       before do
-        post :create, params: {shortened_url: {redirect_url: ''}}
+        post :create, params: { shortened_url: { redirect_url: '' } }
       end
 
       it 'returns a 400' do
@@ -51,7 +53,7 @@ RSpec.describe ShortenedUrlsController, type: :controller do
     end
     context 'with a slug' do
       before do
-        post :create, params: {shortened_url: {redirect_url: 'https://stord.com/warehouse/1', slug: '00Buck'}}
+        post :create, params: { shortened_url: { redirect_url: 'https://stord.com/warehouse/1', slug: '00Buck' } }
       end
 
       it 'returns a 201' do
@@ -65,7 +67,7 @@ RSpec.describe ShortenedUrlsController, type: :controller do
     context 'when an error occurs' do
       before do
         allow(ShortenedUrl).to receive(:create!).and_raise StandardError
-        post :create, params: {shortened_url: {redirect_url: 'https://stord.com/'}}
+        post :create, params: { shortened_url: { redirect_url: 'https://stord.com/' } }
       end
 
       it 'returns a 500' do
@@ -83,7 +85,7 @@ RSpec.describe ShortenedUrlsController, type: :controller do
       before do
         allow(SlugGenerator).to receive(:generate).and_return '00Buck'
         create(:shortened_url)
-        get :show, params: {slug: '00Buck'}
+        get :show, params: { slug: '00Buck' }
       end
 
       it 'returns a 200' do
@@ -95,12 +97,12 @@ RSpec.describe ShortenedUrlsController, type: :controller do
       end
 
       it 'returns the redirect_url' do
-        expect(JSON.parse(response.body)['redirect_url']).to match URI.regexp
+        expect(JSON.parse(response.body)['redirect_url']).to match URI::DEFAULT_PARSER.make_regexp
       end
     end
     context 'with a nonexistant slug' do
       before do
-        get :show, params: {slug: 'N0SLUG'}
+        get :show, params: { slug: 'N0SLUG' }
       end
 
       it 'returns a 404' do
@@ -114,7 +116,7 @@ RSpec.describe ShortenedUrlsController, type: :controller do
     context 'when an error occurs' do
       before do
         allow(ShortenedUrl).to receive(:find_by_slug!).and_raise StandardError
-        get :show, params: {slug: 'N0SLUG'}
+        get :show, params: { slug: 'N0SLUG' }
       end
 
       it 'returns a 500' do
@@ -132,7 +134,7 @@ RSpec.describe ShortenedUrlsController, type: :controller do
       before do
         allow(SlugGenerator).to receive(:generate).and_return '00Buck'
         create(:shortened_url)
-        put :update, params: {slug: '00Buck', redirect_url: 'https://stord.com'}
+        put :update, params: { slug: '00Buck', redirect_url: 'https://stord.com' }
       end
 
       it 'returns a 200' do
@@ -147,7 +149,7 @@ RSpec.describe ShortenedUrlsController, type: :controller do
       before do
         allow(SlugGenerator).to receive(:generate).and_return '00Buck'
         create(:shortened_url)
-        put :update, params: {slug: '00Buck', redirect_url: '$$$#^%#$%#$'}
+        put :update, params: { slug: '00Buck', redirect_url: '$$$#^%#$%#$' }
       end
 
       it 'returns a 200' do
@@ -162,7 +164,7 @@ RSpec.describe ShortenedUrlsController, type: :controller do
       before do
         allow(SlugGenerator).to receive(:generate).and_return '00Buck'
         create(:shortened_url)
-        put :update, params: {slug: '00Buck'}
+        put :update, params: { slug: '00Buck' }
       end
 
       it 'returns a 400' do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShortenedUrlsController < ApplicationController
   def index
     @urls = ShortenedUrl.all
@@ -22,6 +24,7 @@ class ShortenedUrlsController < ApplicationController
   end
 
   private
+
   def shortened_url_params
     params.require(:shortened_url).permit(:redirect_url)
   end
