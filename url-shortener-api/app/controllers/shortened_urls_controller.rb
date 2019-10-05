@@ -5,13 +5,13 @@ class ShortenedUrlsController < ApplicationController
   end
 
   def show
-    @shortened_url = ShortenedUrl.find_by_slug(params[:slug])
-    render json: @shortened_url
+    @shortened_url = ShortenedUrl.find_by_slug!(params[:slug])
+    success_response(:ok, @shortened_url)
   end
 
   def create
     @shortened_url = ShortenedUrl.create!(shortened_url_params)
-    render json: @shortened_url
+    success_response(:created, @shortened_url)
   end
 
   private
