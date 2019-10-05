@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
 class ShortenedUrlsController < ApplicationController
-  def index
-    @urls = ShortenedUrl.all
-    render json: @urls
-  end
-
   def show
     @shortened_url = ShortenedUrl.find_by_slug!(params[:slug])
     success_response(:ok, @shortened_url)
