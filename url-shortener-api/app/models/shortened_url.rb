@@ -1,7 +1,9 @@
+require 'slug_generator'
+
 class ShortenedUrl < ApplicationRecord
   before_validation :generate_slug, on: :create
-  before_validation :cleanse_url, on: :create
-  validates :redirect_url, presence: true, format: { with: URI.regexp }
+  before_validation :cleanse_url, on: [:create, :update], if: 'redirect_url.present?'
+  validates :redirect_url, presence: true, format: {with: URI::DEFAULT_PARSER.regexp[:ABS_URI]}
   validates :slug, presence: true, uniqueness: true
 
   private
@@ -13,8 +15,8 @@ class ShortenedUrl < ApplicationRecord
   end
 
   def generate_slug
-    # this gives us over 44 billion options. 62 choose 6 = n!/(n-k)! = 62!/56!
-    charset = ['A'..'Z','a'..'z','0'..'9'].map{|range| range.to_a}.flatten
-    self.slug = charset.sample(6).join
+    if self.slug.blank?
+      self.slug = SlugGenerator.generate
+    end
   end
 end
