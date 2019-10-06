@@ -9,7 +9,7 @@ RSpec.describe ShortenedUrl, type: :model do
 
   context 'with valid redirect_url' do
     let :subject do
-      ShortenedUrl.create!(redirect_url: 'http://stord.com')
+      create(:shortened_url)
     end
 
     it 'is valid' do
