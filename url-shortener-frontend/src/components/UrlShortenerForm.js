@@ -28,6 +28,7 @@ class UrlShortenerForm extends React.Component {
       this.setState({
         urls: this.state.urls.concat(response.data),
         error: '',
+        value: '',
       })
     })
     .catch(error => {
@@ -42,7 +43,7 @@ class UrlShortenerForm extends React.Component {
 
   afterEdit = (url) => {
     const urlIndex = this.state.urls.findIndex(x => x.id === url.id);
-    const urls = this.state.urls.splice();
+    const urls = this.state.urls.slice();
     urls[urlIndex] = url;
     this.setState({
       urls: urls,
@@ -73,7 +74,9 @@ class UrlShortenerForm extends React.Component {
     });
     return (
       <form onSubmit={this.handleSubmit}>
-        {this.state.error}
+        <span className="error-message">
+          {this.state.error}
+        </span>
         <fieldset>
           <input
             type="text"

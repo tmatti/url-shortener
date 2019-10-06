@@ -73,3 +73,7 @@ a {
 .confirm-button {
   float: right;
 }
+
+.error-message {
+  color: red;
+}
