@@ -42,6 +42,34 @@ fieldset {
   color: #282c34;
 }
 
+.url-list {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+  background: #fff;
+  list-style-type: none;
+}
+
 a {
   color: #09d3ac;
+}
+
+.shortened-url {
+}
+
+.redirect-url {
+  float: left;
+}
+
+.edit-button {
+  float: right;
+}
+
+.edit-input {
+  float: left;
+}
+
+.confirm-button {
+  float: right;
 }

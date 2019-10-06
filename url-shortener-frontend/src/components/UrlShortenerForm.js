@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ShortenedUrl from './ShortenedUrl';
+import ShortenedUrlEdit from './ShortenedUrlEdit';
 
 class UrlShortenerForm extends React.Component {
   constructor(props) {
@@ -8,6 +10,7 @@ class UrlShortenerForm extends React.Component {
       urls: [],
       value: '',
       error: '',
+      editingUrlId: null,
     }
   }
 
@@ -33,19 +36,40 @@ class UrlShortenerForm extends React.Component {
     event.preventDefault();
   }
 
+  enableEdit = (id) => {
+    this.setState({editingUrlId: id})
+  }
+
+  afterEdit = (url) => {
+    const urlIndex = this.state.urls.findIndex(x => x.id === url.id);
+    const urls = this.state.urls.splice();
+    urls[urlIndex] = url;
+    this.setState({
+      urls: urls,
+      editingUrlId: null
+    });
+  }
+
   render() {
     const urls = this.state.urls.slice();
     const urlList = urls.map(url => {
-      const link = 'http://localhost:3000/' + url.slug;
-      return (
-        <li key={url.id}>
-          <a
-            target="_blank"
-            href={link}>
-            {link}
-          </a>
-        </li>
-      );
+      if(this.state.editingUrlId === url.id) {
+        return (
+          <li key={url.id}>
+            <ShortenedUrlEdit url={url}
+              afterEdit={this.afterEdit}
+            />
+          </li>
+        );
+      } else {
+        return (
+          <li key={url.id}>
+            <ShortenedUrl url={url}
+              onClick={this.enableEdit}
+            />
+          </li>
+        );
+      }
     });
     return (
       <form onSubmit={this.handleSubmit}>
