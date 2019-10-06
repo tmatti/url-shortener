@@ -2,21 +2,42 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
 .App-link {
   color: #09d3ac;
+}
+
+fieldset {
+  border:0;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shorten-input {
+  width: 75%;
+  height: 60px;
+  font-size: 20px;
+  border: 1px solid #282c34;
+  border-radius: 8px 0 0 8px;
+  padding: 0 20px;
+  float: left;
+}
+
+.shorten-button {
+  float: right;
+  font-size: 20px;
+  min-width: 20%;
+  border: 1px solid #282c34;
+  border-radius: 0 8px 8px 0;
+  height: 60px;
+  background: #b4b4b4;
+  color: #282c34;
 }
