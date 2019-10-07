@@ -33,12 +33,11 @@ You should see the app now. Fill in a link to shorten. Or create a bunch. You ha
 ## If I had more time I would have...
 
 - gotten to 100% code coverage on the rails unit tests
-- added integration tests
+- added more integration tests
 - added ability to delete urls
 - cleaned up the React code (this is my first time using it)
 - improved the design
 - added a 404 page
 - dockerized so you could stand it up with 1 command
-- deployed to test server so you wouldn't have to test locally
 
 
