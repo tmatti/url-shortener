@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
-  rescue_from StandardError::StandardError, with: :unknown_failure
+  rescue_from StandardError, with: :unknown_failure
   rescue_from ActionController::ParameterMissing, with: :validation_failure
   rescue_from ActiveRecord::RecordNotFound, with: :not_found_error
   rescue_from ActiveRecord::RecordInvalid, with: :validation_failure
