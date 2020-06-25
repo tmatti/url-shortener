@@ -4,7 +4,7 @@ A simple url shortener app built with rails and react
 ## Getting started
 There are two components to the app. The Rails-API backend and the React frontend. These are seperate projects within the same repo. You will need to start up both of them in seperate terminals. 
 
-Normally I would create the backend and frontend in completely seperate repos, but I kept them together for simplicity since this is not a production app. Keeping them seperate allows you to deploy seperate. Using this approach you can deploy your versioned front-end to a CDN and your backend to a server. It reduces load on your server and speeds up pageloads for your customers. It also allows you to deploy breaking changes without any service interruptions when doing blue/green deployments. It also just simplies development in my opinion. 
+Normally I would create the backend and frontend in completely seperate repos, but I kept them together for simplicity since this is not a production app.
 
 ### Requirements
 - Ruby 2.6.3
