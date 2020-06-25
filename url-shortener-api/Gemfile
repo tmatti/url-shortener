@@ -10,7 +10,7 @@ end
 ruby '2.6.3'
 
 gem 'puma', '~> 3.12'
-gem 'rack-cors', '~> 1.0.2'
+gem 'rack-cors', '~> 1.0.5'
 gem 'rails', '~> 5.1.7'
 gem 'sqlite3', '~> 1.4.1'
 
